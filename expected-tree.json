@@ -1,0 +1,220 @@
+{
+  "schema_version": "1.2",
+  "pm": "bun",
+  "pm_version_under_test": "1.2.0",
+  "pm_version_tested": "1.2.0",
+  "source_file": "bun.lock",
+  "generated_at": "2026-05-15T00:00:00+00:00",
+  "root": {
+    "name": "bun-catalogs-probe",
+    "version": "0.1.0",
+    "dependencies": [
+      "app",
+      "lib"
+    ]
+  },
+  "packages": {
+    "app": {
+      "version": "0.1.0",
+      "source": "local",
+      "group": "main",
+      "editable": true,
+      "dependencies": [
+        "zod",
+        "react",
+        "react-dom"
+      ],
+      "source_detail": {
+        "path": "packages/app"
+      },
+      "catalog_refs": {
+        "zod": "catalog:",
+        "react": "catalog:react18",
+        "react-dom": "catalog:react18"
+      }
+    },
+    "lib": {
+      "version": "0.1.0",
+      "source": "local",
+      "group": "main",
+      "editable": true,
+      "dependencies": [
+        "zod"
+      ],
+      "source_detail": {
+        "path": "packages/lib"
+      },
+      "catalog_refs": {
+        "zod": "catalog:"
+      }
+    },
+    "zod": {
+      "version": "3.25.68",
+      "source": "registry",
+      "group": "main",
+      "dependencies": [],
+      "source_detail": {
+        "registry": "https://registry.npmjs.org"
+      },
+      "catalog_origin": "default",
+      "catalog_spec": "^3.25.0"
+    },
+    "react": {
+      "version": "18.3.1",
+      "source": "registry",
+      "group": "main",
+      "dependencies": [
+        "loose-envify"
+      ],
+      "source_detail": {
+        "registry": "https://registry.npmjs.org"
+      },
+      "catalog_origin": "react18",
+      "catalog_spec": "^18.0.0"
+    },
+    "react-dom": {
+      "version": "18.3.1",
+      "source": "registry",
+      "group": "main",
+      "dependencies": [
+        "scheduler"
+      ],
+      "source_detail": {
+        "registry": "https://registry.npmjs.org"
+      },
+      "catalog_origin": "react18",
+      "catalog_spec": "^18.0.0"
+    },
+    "scheduler": {
+      "version": "0.23.2",
+      "source": "registry",
+      "group": "main",
+      "dependencies": [
+        "loose-envify"
+      ],
+      "source_detail": {
+        "registry": "https://registry.npmjs.org"
+      }
+    },
+    "loose-envify": {
+      "version": "1.4.0",
+      "source": "registry",
+      "group": "main",
+      "dependencies": [
+        "js-tokens"
+      ],
+      "source_detail": {
+        "registry": "https://registry.npmjs.org"
+      }
+    },
+    "js-tokens": {
+      "version": "4.0.0",
+      "source": "registry",
+      "group": "main",
+      "dependencies": [],
+      "source_detail": {
+        "registry": "https://registry.npmjs.org"
+      }
+    }
+  },
+  "dependency_counts": {
+    "direct": 5,
+    "transitive": 3,
+    "total": 8,
+    "notes": [
+      "Direct deps (5): root -> app (workspace/local), root -> lib (workspace/local), app -> zod (catalog: expanded to 3.25.68), app -> react (catalog:react18 expanded to 18.3.1), app -> react-dom (catalog:react18 expanded to 18.3.1). lib -> zod is deduplicated with app -> zod (same resolved node).",
+      "Transitive deps (3): scheduler@0.23.2 (via react-dom), loose-envify@1.4.0 (via react and scheduler, deduplicated), js-tokens@4.0.0 (via loose-envify).",
+      "zod@3.25.68 is referenced by both app and lib via 'catalog:' — Mend should deduplicate to one node in the graph.",
+      "If Mend counts workspace members (app, lib) as sub-project roots rather than as dep nodes, the direct count from the root perspective would be 2 (app, lib) and each sub-project would carry its own direct count. Either representation is acceptable; catalog: expansion correctness is the key assertion.",
+      "Mend may report per-workspace-member trees. In that case: app direct=3 (zod, react, react-dom), lib direct=1 (zod), total direct across members=4, total transitive=3."
+    ]
+  },
+  "catalog_expansion_table": {
+    "default_catalog": {
+      "zod": {
+        "spec": "^3.25.0",
+        "resolved": "3.25.68",
+        "used_by": ["app", "lib"]
+      }
+    },
+    "named_catalogs": {
+      "react18": {
+        "react": {
+          "spec": "^18.0.0",
+          "resolved": "18.3.1",
+          "used_by": ["app"]
+        },
+        "react-dom": {
+          "spec": "^18.0.0",
+          "resolved": "18.3.1",
+          "used_by": ["app"]
+        }
+      }
+    }
+  },
+  "workspace_edges": [
+    {
+      "from": "root",
+      "to": "app",
+      "path": "packages/app",
+      "source": "local"
+    },
+    {
+      "from": "root",
+      "to": "lib",
+      "path": "packages/lib",
+      "source": "local"
+    }
+  ],
+  "project_metadata": {
+    "source_file": "bun.lock",
+    "groups": [
+      "main"
+    ],
+    "workspace_members": [
+      "packages/app",
+      "packages/lib"
+    ],
+    "catalog": {
+      "zod": "^3.25.0"
+    },
+    "catalogs": {
+      "react18": {
+        "react": "^18.0.0",
+        "react-dom": "^18.0.0"
+      }
+    }
+  },
+  "mend_parse_failure_modes": {
+    "catalog_token_left_literal": {
+      "description": "If Mend does not recognize 'catalog:' as a version-specifier type, the dep will appear with version string 'catalog:' or 'catalog:react18' verbatim rather than the expanded concrete version.",
+      "symptom": "zod appears at version 'catalog:' instead of '3.25.68'; react appears at 'catalog:react18' instead of '18.3.1'.",
+      "comparator_flag": "version_mismatch"
+    },
+    "catalog_deps_dropped": {
+      "description": "Older Mend parsers may treat 'catalog:' and 'catalog:react18' as unknown specifier tokens and drop the dep entirely from the tree.",
+      "symptom": "zod, react, and/or react-dom missing from app sub-tree; zod missing from lib sub-tree.",
+      "comparator_flag": "missing_dependency"
+    },
+    "named_catalog_not_found": {
+      "description": "Parser may expand the default 'catalog:' correctly but fail to resolve 'catalog:<name>' named references.",
+      "symptom": "zod present at correct version; react and react-dom absent or at literal version string.",
+      "comparator_flag": "partial_catalog_expansion"
+    },
+    "catalog_field_ignored": {
+      "description": "If the parser ignores the root 'catalog' and 'catalogs' fields in package.json entirely, it has no expansion table and all catalog: tokens fail. This is the most likely gap for parsers built before Bun 1.2.",
+      "symptom": "All catalog-sourced deps absent or unversioned.",
+      "comparator_flag": "catalog_field_unknown"
+    }
+  },
+  "warnings": [
+    "Bun is NOT a UA-supported resolver (js-bun is Bucket C in whitesource-config.md). No .whitesource file is emitted — manual tool version pinning via scanSettings.versioning is impossible for this ecosystem. Detection is lockfile-driven (bun.lock JSONC parsing).",
+    "CATALOG EXPANSION REQUIREMENT (D4): The 'catalog:' version token in packages/app/package.json and packages/lib/package.json MUST be expanded to the concrete version declared in the root package.json 'catalog' block (zod ^3.25.0 -> 3.25.68). If Mend's bun.lock parser does not recognize the 'catalog:' specifier, zod will appear with literal version 'catalog:' — a clear parse-error signal.",
+    "NAMED CATALOG EXPANSION REQUIREMENT (D5): The 'catalog:react18' token in packages/app/package.json MUST be expanded via the root package.json 'catalogs.react18' block (react ^18.0.0 -> 18.3.1, react-dom ^18.0.0 -> 18.3.1). Named catalogs are a separate code path from the default 'catalog:'. A parser can pass D4 and still fail D5 if named-catalog lookup is unimplemented.",
+    "OPEN QUESTION Q3 (docs/BUN_COVERAGE_PLAN.md §9): 'Does Mend understand Bun 1.2 catalog / catalogs?' This probe is the designated instrument. If the probe's actual scan output shows catalog-token literals or missing deps, file a Mend bug linked from this probe README.",
+    "BUN 1.2+ MINIMUM: 'catalog' and 'catalogs' fields are Bun 1.2+ features. Any environment running an older Bun toolchain conceptually (lockfile-only static parser) must still recognize these manifest fields from the written bun.lock content — there is no UA pre-step to install the right Bun version.",
+    "DEDUPLICATION: zod is declared in both packages/app and packages/lib with 'catalog:', resolving to the same version (3.25.68). Mend must deduplicate to one graph node. If Mend reports two separate zod entries at different versions, that indicates a catalog-resolution + deduplication failure.",
+    "TRANSITIVE CORRECTNESS: react@18.3.1 and react-dom@18.3.1 pull in scheduler@0.23.2, loose-envify@1.4.0, and js-tokens@4.0.0 as transitives. If catalog expansion is broken (deps dropped or unversioned), these transitives will also be absent. An empty transitive count combined with absent catalog deps confirms catalog-expansion failure.",
+    "This probe is the designated instrument for answering docs/BUN_COVERAGE_PLAN.md §9 open question (3). Record the observed Mend output in the probe README and BUN_COVERAGE_PLAN.md §11.4 row #21 before closing."
+  ]
+}

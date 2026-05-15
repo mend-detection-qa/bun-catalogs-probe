@@ -1,0 +1,9 @@
+{
+  "name": "app",
+  "version": "0.1.0",
+  "dependencies": {
+    "zod": "catalog:",
+    "react": "catalog:react18",
+    "react-dom": "catalog:react18"
+  }
+}
