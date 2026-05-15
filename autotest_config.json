@@ -1,0 +1,34 @@
+{
+  "description": "Autotest config for bun-catalogs-probe — Tier 4 / entry #21 of docs/BUN_COVERAGE_PLAN.md. §3 features D4 + D5 — catalog (default) + catalogs (named). Bun 1.2+ feature. Workspace members app and lib use 'catalog:' and 'catalog:react18' to reference shared versions. Catalog tokens MUST be expanded to concrete versions (zod@3.25.68, react@18.3.1, react-dom@18.3.1).",
+  "version": 1.8,
+  "base_config": {
+    "branch": null,
+    "validate_scan_output": true,
+    "scan_output": {"security_scan_report_conclusion": "success", "total_libs_scanned": {"gte": 3}, "expected_messages": []},
+    "validate_dependency_tree": true,
+    "dependency_tree": {
+      "check_dependency_tree_detection_status": true,
+      "check_update_request_sca_results": true,
+      "expected_total_dependencies_number": {"gte": 3},
+      "expected_direct_dependencies_number": {"gte": 1},
+      "expected_transitive_dependencies_number": {"gte": 0},
+      "direct_dependencies_names_list": {"contains": []},
+      "transitive_dependencies_names_list": {"contains": []},
+      "expected_package_managers": {"contains": ["bun"]},
+      "validate_agent_versions": true,
+      "expected_agent_version": "",
+      "expected_plugin_version": "",
+      "validate_mend_tags": false,
+      "validate_checksums": false,
+      "checksums_config": {"check_sha1_not_empty": false, "check_sha1_format": false, "check_sha1_consistency": false, "check_checksums_by_formula": false, "expected_dependency_checksums": []}
+    },
+    "validate_vulnerabilities_table": true,
+    "vulnerabilities_table": {"check_vulnerabilities_table_structure": true, "expected_total_vulnerabilities_number": {"gte": 0}, "vulnerabilities_ids_list": {"contains": []}, "vulnerabilities_names_list": {"contains": []}},
+    "validate_scanner_logs": false,
+    "logs": {"check_scanner_logs": true, "detect_secrets": false, "check_external_logs": false, "expected_log_lines": []},
+    "validate_reachability": false,
+    "reachability": {"check_reachability_status": true, "validate_issues": false, "expected_reachable_cves": {"contains": []}, "expected_unreachable_cves": {"contains": []}, "expected_reachable_libraries": {"contains": []}, "expected_unreachable_libraries": {"contains": []}, "expected_total_reachable_count": {"gte": 0}, "expected_total_unreachable_count": {"gte": 0}, "expected_reachability_traces": []},
+    "validate_project_contributors": true,
+    "contributors": {"check_contributors_structure": true, "expected_contributors": [], "expected_min_commits": {"gte": 1}, "expected_total_contributors": {}}
+  }
+}
